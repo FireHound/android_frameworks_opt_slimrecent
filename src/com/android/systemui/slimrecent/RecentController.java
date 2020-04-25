@@ -259,7 +259,9 @@ public class RecentController implements RecentPanelView.OnExitListener,
         mMemText = (TextView) mRecentContainer.findViewById(R.id.recents_memory_text);
         mMemBar = (ProgressBar) mRecentContainer.findViewById(R.id.recents_memory_bar);
         mRecentContainer.findViewById(R.id.recents_membar)
-                .setOnLongClickListener(mMemBarLongClickListener);
+                .setOnClickListener(mMemBarClickListener);
+        mRecentContainer.findViewById(R.id.recent_content)
+                .setOnClickListener(mExitPanel);
 
         mCardRecyclerView.setHasFixedSize(true);
 
@@ -1561,19 +1563,25 @@ public class RecentController implements RecentPanelView.OnExitListener,
         }
     }
 
-    private View.OnLongClickListener mMemBarLongClickListener = new View.OnLongClickListener() {
+    private View.OnClickListener mMemBarClickListener = new View.OnClickListener() {
         @Override
-        public boolean onLongClick(View v) {
+        public void onClick(View v) {
             if (!mMemBarLongClickToClear) {
-                return false;
+                return;
             }
             if (mRecentPanelView.hasClearableTasks()) {
                 if (mRecentPanelView.removeAllApplications()) {
                     hideRecents(false);
                 }
-                return true;
             }
-            return false;
+            return;
+        }
+    };
+
+    private View.OnClickListener mExitPanel = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            onExit();
         }
     };
 

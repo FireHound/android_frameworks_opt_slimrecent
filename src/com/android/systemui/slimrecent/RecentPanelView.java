@@ -322,10 +322,10 @@ public class RecentPanelView {
             final boolean isExpanded =
                     ((isSystemExpanded && !isUserCollapsed) || isUserExpanded) && !isTopTask;
 
-            expanded = !mFastMode && !isTopTask && isExpanded;
-            expandVisible = !mFastMode && !isTopTask;
-            noIcon = isTopTask && !mIsScreenPinningEnabled && !mFastMode;
-            pinAppIcon = isTopTask && mIsScreenPinningEnabled;
+            expanded = !mFastMode && isExpanded;
+            expandVisible = !mFastMode;
+            noIcon = !mIsScreenPinningEnabled && !mFastMode;
+            pinAppIcon = mIsScreenPinningEnabled;
         }
 
         private Intent getAppInfoIntent() {
@@ -1172,7 +1172,7 @@ public class RecentPanelView {
                 }, mIconsHandler);
             }
             // skip thumbs loading process if fast mode enabled
-            if (mExpandedMode != EXPANDED_MODE_DISABLED && !topTask) {
+            if (mExpandedMode != EXPANDED_MODE_DISABLED) {
                 new BitmapDownloaderTask(mContext,
                         new DownloaderCallback() {
                     @Override

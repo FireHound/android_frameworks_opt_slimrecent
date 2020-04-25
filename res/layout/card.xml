@@ -32,12 +32,12 @@
         <LinearLayout
             android:id="@+id/card_content"
             android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_width="25dp"
+            android:layout_height="25dp">
 
             <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/recent_card_height">
+                android:layout_width="25dp"
+                android:layout_height="25dp">
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
