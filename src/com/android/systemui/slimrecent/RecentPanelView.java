@@ -322,10 +322,10 @@ public class RecentPanelView {
             final boolean isExpanded =
                     ((isSystemExpanded && !isUserCollapsed) || isUserExpanded) && !isTopTask;
 
-            expanded = !mFastMode && isExpanded;
-            expandVisible = !mFastMode;
-            noIcon = !mIsScreenPinningEnabled && !mFastMode;
-            pinAppIcon = mIsScreenPinningEnabled;
+            expanded = !mFastMode && isExpanded && !isTopTask;
+            expandVisible = !mFastMode && !isTopTask;
+            noIcon = isTopTask && !mIsScreenPinningEnabled && !mFastMode;
+            pinAppIcon = isTopTask && mIsScreenPinningEnabled;
         }
 
         private Intent getAppInfoIntent() {
@@ -788,8 +788,7 @@ public class RecentPanelView {
      * Set correct visibility states for the listview and the empty recent icon.
      */
     private void setVisibility() {
-        mEmptyRecentView.setVisibility((
-                mCardAdapter.getItemCount() == 0) ? View.VISIBLE : View.GONE);
+        mEmptyRecentView.setVisibility((View.GONE));
         mCardRecyclerView.setVisibility((
                 mCardAdapter.getItemCount() == 0) ? View.GONE : View.VISIBLE);
 

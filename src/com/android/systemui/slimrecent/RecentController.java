@@ -262,6 +262,8 @@ public class RecentController implements RecentPanelView.OnExitListener,
                 .setOnClickListener(mMemBarClickListener);
         mRecentContainer.findViewById(R.id.recent_content)
                 .setOnClickListener(mExitPanel);
+        mRecentContainer.findViewById(R.id.recent_list)
+                .setOnClickListener(mExitPanel);
 
         mCardRecyclerView.setHasFixedSize(true);
 
